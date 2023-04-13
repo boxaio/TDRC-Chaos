@@ -9,7 +9,7 @@ function ut = KS_Solver(L, N, dt, tmax, mu, u0)
 % SIAM Journal on Scientific Computing, 2005, 26(4): 1214-1233.
 
 % spatial nodes
-x = L*(-N/2+1:N/2)'/N;
+x = L * (-N/2 + 1 : N/2)' / N;
 
 wavelength = L / 4;
 omega = 2 * pi / wavelength;
@@ -42,7 +42,7 @@ vv = zeros(N, nmax);
 
 vv(:, 1) = v;
 
-for n = 1 : nmax
+for n = 2 : nmax
     r_ifft_v = real(ifft(v));
     Nv = g.*fft(r_ifft_v.^2) + 2i * k.*fft(r_ifft_v.*px) ...
           - fft(r_ifft_v.*pxx) + k.^2.*fft(r_ifft_v.*p);
@@ -59,7 +59,7 @@ for n = 1 : nmax
     Nc = g.*fft(r_ifft_c.^2) + 2i * k.*fft(r_ifft_c.*px) ...
           - fft(r_ifft_c.*pxx) + k.^2.*fft(r_ifft_c.*p);
     v = E.*v + Nv.*f1 + 2 * (Na + Nb).*f2 + Nc.*f3;
-    vv(:,n) = v;
+    vv(:, n) = v;
 end
 
 ut = transpose(real(ifft(vv)));
