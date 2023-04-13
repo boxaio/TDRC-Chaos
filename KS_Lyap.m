@@ -108,7 +108,7 @@ for n = 1 : nmax
 
     if mod(n, norm_steps) == 0
         count = count + 1;
-        % QR decomposition, Q is of size(N, N), R is of size(N, num_lyaps)
+        % QR decomposition, Q is of size(N, num_lyaps), R is of size(num_lyaps, num_lyaps)
         [matQ, matR] = qr(real(ifft(Y)), 0);
         Rii(:, count) = log(diag(matR));
         % new Y
